@@ -1,0 +1,87 @@
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; }
+.font-display { font-family: 'Fraunces', serif; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  #loader, #cinema-cursor { display: none !important; }
+}
+
+/* ---------- interaction basics ---------- */
+a, button, [role="button"] { cursor: pointer; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid #A9803D;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+::selection { background: #A9803D; color: #FBF8F1; }
+
+/* ---------- hyperframe registration marks (recurring cinema motif) ---------- */
+.hyperframe { position: relative; }
+.frame-mark { position: absolute; width: 22px; height: 22px; opacity: .55; pointer-events: none; z-index: 20; }
+.frame-mark.tl { top: 22px; left: 22px; border-top: 1.5px solid currentColor; border-left: 1.5px solid currentColor; }
+.frame-mark.tr { top: 22px; right: 22px; border-top: 1.5px solid currentColor; border-right: 1.5px solid currentColor; }
+.frame-mark.bl { bottom: 22px; left: 22px; border-bottom: 1.5px solid currentColor; border-left: 1.5px solid currentColor; }
+.frame-mark.br { bottom: 22px; right: 22px; border-bottom: 1.5px solid currentColor; border-right: 1.5px solid currentColor; }
+.frame-index { position: absolute; left: 22px; bottom: 22px; margin-bottom: 34px; font-size: 11px; letter-spacing: 0.06em; opacity: .6; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.char { display: inline-block; will-change: transform; }
+.split-line { overflow: hidden; }
+
+.nav-link { position: relative; }
+.nav-link::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -3px; height: 1px;
+  background: currentColor; transform: scaleX(0); transform-origin: left;
+  transition: transform .35s ease;
+}
+.nav-link:hover::after, .nav-link:focus-visible::after, .nav-link.is-active::after { transform: scaleX(1); }
+
+.value-panel { opacity: 0; }
+.value-panel.is-active { opacity: 1; }
+
+.parallax-wrap { overflow: hidden; }
+
+/* ---------- intro loader: one signature page-load moment ---------- */
+#loader {
+  position: fixed; inset: 0; z-index: 999;
+  background: #04382a; color: #FBF8F1;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px;
+}
+.loader-frame { position: relative; width: 64px; height: 64px; }
+.loader-mark { position: absolute; width: 18px; height: 18px; }
+.loader-mark.tl { top: 0; left: 0; border-top: 1.5px solid #C9A45F; border-left: 1.5px solid #C9A45F; }
+.loader-mark.tr { top: 0; right: 0; border-top: 1.5px solid #C9A45F; border-right: 1.5px solid #C9A45F; }
+.loader-mark.bl { bottom: 0; left: 0; border-bottom: 1.5px solid #C9A45F; border-left: 1.5px solid #C9A45F; }
+.loader-mark.br { bottom: 0; right: 0; border-bottom: 1.5px solid #C9A45F; border-right: 1.5px solid #C9A45F; }
+#loader-track { width: 160px; height: 2px; background: rgba(251,248,241,.15); border-radius: 999px; overflow: hidden; }
+#loader-bar { height: 100%; width: 0%; background: #C9A45F; }
+
+/* ---------- cinema cursor: only on devices with a real mouse ---------- */
+#cinema-cursor { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  #cinema-cursor {
+    display: block; position: fixed; top: 0; left: 0; z-index: 998;
+    width: 28px; height: 28px; margin: -14px 0 0 -14px;
+    border: 1.2px solid #FBF8F1; border-radius: 999px;
+    pointer-events: none; mix-blend-mode: difference;
+    transform: translate(-100px, -100px);
+  }
+  #cinema-cursor::before {
+    content: ''; position: absolute; top: 50%; left: 50%; width: 3px; height: 3px;
+    margin: -1.5px 0 0 -1.5px; background: #FBF8F1; border-radius: 999px;
+  }
+  #cinema-cursor.is-hover { width: 46px; height: 46px; margin: -23px 0 0 -23px; }
+}
+
+/* ---------- filmstrip rail: functional frame navigator ---------- */
+#filmstrip-rail { color: #FBF8F1; mix-blend-mode: difference; }
+#filmstrip-rail .dot-mark { width: 6px; height: 6px; background: currentColor; border-radius: 999px; opacity: .45; transition: all .3s ease; }
+#filmstrip-rail a.is-active .dot-mark { opacity: 1; transform: scale(1.7); }
+#filmstrip-rail a:hover .dot-mark { opacity: 1; }

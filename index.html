@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMAN 10 Depok — Berakhlak Mulia, Berprestasi Mendunia</title>
+<meta name="description" content="Website Resmi SMA Negeri 10 Kota Depok. Sekolah yang mewujudkan lulusan berakhlak mulia, berprestasi, berbudaya lingkungan, dan berwawasan global.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind.config.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-parchment text-ink antialiased">
+
+<a href="#beranda" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] bg-forest text-cream px-4 py-2 rounded">Lompat ke konten utama</a>
+
+<!-- intro loader: satu momen orkestrasi utama saat halaman dibuka -->
+<div id="loader" aria-hidden="true">
+  <div class="loader-frame">
+    <span class="loader-mark tl"></span><span class="loader-mark tr"></span><span class="loader-mark bl"></span><span class="loader-mark br"></span>
+  </div>
+  <div id="loader-track"><div id="loader-bar"></div></div>
+</div>
+
+<!-- cinema cursor: reticle mengikuti mouse, hanya aktif di perangkat dengan mouse asli -->
+<div id="cinema-cursor" aria-hidden="true"></div>
+
+<!-- ============ NAV ============ -->
+<header id="site-header" class="fixed top-0 inset-x-0 z-50 transition-colors duration-500 text-cream">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+    <a href="#beranda" class="flex items-center gap-3">
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipKEV9RPj0wCpAu4wdD1pDRwPnLPpr181f8SCXUcyPCqhqAdjfr8FmmvFzX-a9y-sx_8pkBY7ChvE63fXrPQF_k-y_mdRWHPWnZqIVnTxyaEWCune4zS5_54cZx-sRQg_RpJdugO64LiUWK_I3WRJL_v8dzpV55f2sC3NdmUzHyniMs_3tncvk0u5pdiw/s1587/sman10.png" alt="Logo SMAN 10 Depok" class="h-10 w-10 object-contain">
+      <span class="font-display text-lg leading-tight">SMA Negeri 10 Depok</span>
+    </a>
+    <nav class="hidden lg:flex items-center gap-7 text-sm">
+      <a href="#beranda" class="nav-link">Beranda</a>
+      <a href="#kurikulum" class="nav-link">Kurikulum</a>
+      <a href="#kesiswaan" class="nav-link">Kesiswaan</a>
+      <a href="#humas" class="nav-link">Humas</a>
+      <a href="#sarpras" class="nav-link">Sarpras</a>
+      <a href="#tata-usaha" class="nav-link">Tata Usaha</a>
+      <a href="#guru" class="nav-link">Guru</a>
+      <a href="https://skl.sman10-depok.sch.id" class="nav-link">Kelulusan</a>
+    </nav>
+    <a href="#kontak-sekolah" class="hidden lg:inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full bg-brass text-cream hover:bg-brass-light transition-colors">Hubungi Sekolah</a>
+    <button id="menu-btn" aria-label="Buka menu navigasi" aria-expanded="false" class="lg:hidden p-2">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="lg:hidden hidden bg-forest text-cream px-6 pb-6 pt-2 flex flex-col gap-4 text-sm">
+    <a href="#beranda">Beranda</a>
+    <a href="#kurikulum">Kurikulum</a>
+    <a href="#kesiswaan">Kesiswaan</a>
+    <a href="#humas">Humas</a>
+    <a href="#sarpras">Sarpras</a>
+    <a href="#tata-usaha">Tata Usaha</a>
+    <a href="#guru">Guru</a>
+    <a href="https://skl.sman10-depok.sch.id">Kelulusan</a>
+    <a href="#kontak-sekolah" class="font-semibold">Hubungi Sekolah</a>
+  </div>
+</header>
+
+<!-- ============ FILMSTRIP RAIL: navigator 6 frame, fungsional bukan dekorasi ============ -->
+<nav id="filmstrip-rail" aria-label="Navigasi antar frame" class="hidden lg:flex fixed right-6 top-1/2 -translate-y-1/2 z-40 flex-col gap-5">
+  <a href="#beranda" data-frame="0" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 01, Beranda"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">01</span><span class="dot-mark"></span></a>
+  <a href="#guru" data-frame="1" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 02, Guru"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">02</span><span class="dot-mark"></span></a>
+  <a href="#visi-misi" data-frame="2" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 03, Visi Misi"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">03</span><span class="dot-mark"></span></a>
+  <a href="#panca-nilai" data-frame="3" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 04, Panca Nilai"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">04</span><span class="dot-mark"></span></a>
+  <a href="#humas" data-frame="4" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 05, Humas"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">05</span><span class="dot-mark"></span></a>
+  <a href="#kontak-sekolah" data-frame="5" class="group flex items-center gap-2 justify-end" aria-label="Ke frame 06, Kontak"><span class="text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">06</span><span class="dot-mark"></span></a>
+</nav>
+
+<main id="konten">
+
+<!-- ============ FRAME 01 — BERANDA ============ -->
+<section id="beranda" class="hyperframe min-h-screen flex flex-col justify-center bg-forest text-cream overflow-hidden pt-24">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index">01 — BERANDA</span>
+
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-[1.15fr_.85fr] gap-14 items-center">
+    <div>
+      <p id="hero-kicker" class="text-sm text-brass-light/90 mb-6">Website Resmi · SMA Negeri 10 Kota Depok</p>
+      <h1 id="hero-title" class="split-line font-display text-[13vw] leading-[0.98] lg:text-6xl lg:leading-[1.03] font-medium max-w-xl">Berakhlak mulia, berprestasi mendunia.</h1>
+      <p id="hero-sub" class="mt-7 text-cream/75 max-w-md leading-relaxed">SMA Negeri 10 Kota Depok mewujudkan lulusan yang berakhlak mulia, unggul dalam prestasi dan inovasi, berbudaya lingkungan, serta berwawasan global.</p>
+      <div id="hero-cta" class="mt-9 flex flex-wrap gap-4">
+        <a href="#guru" class="magnetic px-6 py-3 rounded-full bg-brass text-cream font-semibold text-sm hover:bg-brass-light transition-colors">Kenali Guru Kami</a>
+        <a href="#kontak-sekolah" class="magnetic px-6 py-3 rounded-full border border-cream/30 text-cream font-semibold text-sm hover:bg-cream/10 transition-colors">Hubungi Sekolah</a>
+      </div>
+    </div>
+
+    <div id="hero-portrait" class="relative hidden lg:block">
+      <div class="parallax-wrap aspect-[4/5] rounded-2xl border border-cream/15">
+        <img src="https://sman10depok.sch.id/guru/asep2.png" alt="Kepala Sekolah SMAN 10 Depok" class="w-full h-full object-cover scale-110">
+      </div>
+      <div class="absolute -left-8 bottom-8 bg-cream text-ink rounded-xl px-5 py-4 shadow-xl w-52">
+        <p class="font-display text-sm leading-snug">Asep Panji Lesmana, S.S.</p>
+        <p class="text-xs text-ink/60 mt-1">Kepala Sekolah</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="stats-row" class="max-w-7xl mx-auto px-6 lg:px-10 w-full mt-16 grid grid-cols-2 lg:grid-cols-4 gap-8 border-t border-cream/15 pt-10">
+    <div><p class="font-display text-4xl"><span class="stat-num" data-target="0">0</span></p><p class="text-xs text-cream/60 mt-1">Murid</p></div>
+    <div><p class="font-display text-4xl"><span class="stat-num" data-target="0">0</span></p><p class="text-xs text-cream/60 mt-1">Rombel</p></div>
+    <div><p class="font-display text-4xl"><span class="stat-num" data-target="0">0</span></p><p class="text-xs text-cream/60 mt-1">Guru &amp; Tendik</p></div>
+    <div><p class="font-display text-4xl"><span class="stat-num" data-target="0">0</span>+</p><p class="text-xs text-cream/60 mt-1">Prestasi Puspresnas</p></div>
+  </div>
+  <!-- CATATAN: data-target masih 0, angka asli tidak terbaca saat fetch (kemungkinan di-render via JS terpisah di situs asli). Ganti dengan angka riil. -->
+</section>
+
+<!-- ============ FRAME 02 — GURU / SAMBUTAN KEPALA SEKOLAH ============ -->
+<section id="guru" class="hyperframe min-h-screen flex items-center bg-cream text-ink py-28">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index text-ink/50">02 — GURU</span>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-[1.3fr_.7fr] gap-14 items-center reveal-up">
+    <div>
+      <p class="text-sm text-brass font-semibold mb-3">Sambutan Kepala Sekolah</p>
+      <blockquote class="font-display text-2xl lg:text-3xl leading-relaxed text-ink/90">
+        "Selamat datang di website resmi SMA Negeri 10 Kota Depok. Website ini kami hadirkan sebagai media informasi, komunikasi, dan transparansi kepada seluruh warga sekolah dan masyarakat luas mengenai berbagai program, prestasi, serta aktivitas pendidikan di SMAN 10 Depok."
+      </blockquote>
+      <p class="mt-6 text-ink/70 leading-relaxed max-w-lg">Sejalan dengan visi kami, yaitu mewujudkan lulusan yang berakhlak mulia, unggul dalam prestasi dan inovasi, berbudaya lingkungan, serta berwawasan global, sekolah terus berkomitmen menghadirkan pembelajaran yang bermakna, aman, dan adaptif terhadap perkembangan zaman.</p>
+      <p class="mt-4 text-ink/70 leading-relaxed max-w-lg">Kami percaya bahwa kolaborasi antara sekolah, orang tua, peserta didik, dan seluruh pemangku kepentingan merupakan kunci utama dalam meningkatkan mutu pendidikan.</p>
+    </div>
+    <div id="guru-portrait" class="parallax-wrap aspect-[3/4] rounded-2xl border border-ink/10">
+      <img src="https://sman10depok.sch.id/guru/asep2.png" alt="Asep Panji Lesmana, S.S., Kepala Sekolah SMAN 10 Depok" class="w-full h-full object-cover scale-110">
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAME 03 — VISI & MISI ============ -->
+<section id="visi-misi" class="hyperframe min-h-screen flex items-center bg-parchment text-ink py-28">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index text-ink/50">03 — VISI &amp; MISI</span>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-[1fr_1.2fr] gap-14">
+    <div class="reveal-up">
+      <p class="text-sm text-brass font-semibold mb-3">Arah &amp; Tujuan</p>
+      <h2 class="font-display text-3xl lg:text-4xl leading-tight">Visi &amp; Misi Sekolah</h2>
+      <p class="mt-6 text-ink/70 leading-relaxed max-w-sm">"Mewujudkan lulusan yang <em class="text-forest not-italic font-semibold">berakhlak mulia</em>, unggul dalam prestasi dan inovasi, berbudaya lingkungan, serta <em class="text-forest not-italic font-semibold">berwawasan global</em>."</p>
+    </div>
+
+    <ul class="divide-y divide-ink/10 border-t border-ink/10">
+      <li class="py-5 flex gap-5 items-start">
+        <svg class="w-6 h-6 shrink-0 mt-1 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-4.35-9.5-9C.5 7.5 3 3.5 7 3.5c2 0 3.5 1.2 5 3 1.5-1.8 3-3 5-3 4 0 6.5 4 4.5 8.5-2.5 4.65-9.5 9-9.5 9Z"/></svg>
+        <div><p class="font-semibold">Iman &amp; Akhlak</p><p class="text-sm text-ink/60 mt-1">Menanamkan dan mengembangkan nilai keimanan, ketakwaan, serta akhlak mulia dalam seluruh proses pembelajaran dan kehidupan warga sekolah.</p></div>
+      </li>
+      <li class="py-5 flex gap-5 items-start">
+        <svg class="w-6 h-6 shrink-0 mt-1 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-3.5 10.9c.6.44 1 1.2 1 2.1h5c0-.9.4-1.66 1-2.1A6 6 0 0 0 12 2Z"/></svg>
+        <div><p class="font-semibold">Pembelajaran Inovatif</p><p class="text-sm text-ink/60 mt-1">Menyelenggarakan pembelajaran yang inovatif, kreatif, kolaboratif, dan berbasis teknologi digital guna meningkatkan kualitas dan relevansi pembelajaran.</p></div>
+      </li>
+      <li class="py-5 flex gap-5 items-start">
+        <svg class="w-6 h-6 shrink-0 mt-1 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 21h8M12 17v4M7 4h10v4a5 5 0 0 1-10 0V4ZM7 5H4a3 3 0 0 0 3 4M17 5h3a3 3 0 0 1-3 4"/></svg>
+        <div><p class="font-semibold">Prestasi</p><p class="text-sm text-ink/60 mt-1">Meningkatkan prestasi akademik dan nonakademik peserta didik di tingkat daerah, nasional, dan internasional.</p></div>
+      </li>
+      <li class="py-5 flex gap-5 items-start">
+        <svg class="w-6 h-6 shrink-0 mt-1 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22v-7M12 15c-4 0-7-3-7-7 0 0 7-1 7 4 0-5 7-4 7-4 0 4-3 7-7 7Z"/></svg>
+        <div><p class="font-semibold">Budaya Lingkungan</p><p class="text-sm text-ink/60 mt-1">Mewujudkan lingkungan sekolah yang bersih, sehat, asri, dan berkelanjutan sebagai ruang belajar yang aman, nyaman, dan kondusif.</p></div>
+      </li>
+      <li class="py-5 flex gap-5 items-start">
+        <svg class="w-6 h-6 shrink-0 mt-1 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 6 4 9s-1.5 6.4-4 9c-2.5-2.6-4-6-4-9s1.5-6.4 4-9Z"/></svg>
+        <div><p class="font-semibold">Wawasan Global</p><p class="text-sm text-ink/60 mt-1">Menyiapkan lulusan yang berwawasan global, adaptif, berdaya saing, serta berkarakter.</p></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ FRAME 04 — PANCA NILAI (centerpiece hyperframe pinned) ============ -->
+<section id="panca-nilai" class="hyperframe relative bg-forest text-cream">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index">04 — PANCA NILAI</span>
+
+  <div id="panca-pin" class="min-h-screen flex flex-col justify-center overflow-hidden py-24">
+    <div class="max-w-6xl mx-auto px-6 lg:px-10 w-full">
+      <p class="text-sm text-brass-light font-semibold mb-3">Kearifan Lokal Sunda</p>
+      <h2 class="font-display text-3xl lg:text-4xl leading-tight max-w-xl">Panca Nilai Kebaikan Sekolah</h2>
+      <p class="mt-4 text-cream/70 max-w-md">Lima nilai luhur budaya Sunda yang menjadi napas keseharian warga SMAN 10 Depok.</p>
+
+      <div id="panca-stage" class="relative mt-16 h-64 lg:h-56">
+        <div class="value-panel absolute inset-0 flex items-center gap-8" data-idx="0">
+          <span class="font-display text-7xl text-brass-light/40">I</span>
+          <div><p class="font-display text-2xl">Cageur <span class="text-cream/50 text-base font-sans">— Sehat</span></p><p class="mt-2 text-cream/70 max-w-lg">Sehat secara fisik, mental, dan spiritual, mampu berpikir dan bertindak rasional serta proporsional.</p></div>
+        </div>
+        <div class="value-panel absolute inset-0 flex items-center gap-8" data-idx="1">
+          <span class="font-display text-7xl text-brass-light/40">II</span>
+          <div><p class="font-display text-2xl">Bageur <span class="text-cream/50 text-base font-sans">— Baik</span></p><p class="mt-2 text-cream/70 max-w-lg">Berakhlak mulia, ramah, santun, peduli, dan memiliki budi pekerti luhur.</p></div>
+        </div>
+        <div class="value-panel absolute inset-0 flex items-center gap-8" data-idx="2">
+          <span class="font-display text-7xl text-brass-light/40">III</span>
+          <div><p class="font-display text-2xl">Bener <span class="text-cream/50 text-base font-sans">— Benar</span></p><p class="mt-2 text-cream/70 max-w-lg">Jujur, amanah, bertanggung jawab, dan menjunjung integritas.</p></div>
+        </div>
+        <div class="value-panel absolute inset-0 flex items-center gap-8" data-idx="3">
+          <span class="font-display text-7xl text-brass-light/40">IV</span>
+          <div><p class="font-display text-2xl">Pinter <span class="text-cream/50 text-base font-sans">— Pintar</span></p><p class="mt-2 text-cream/70 max-w-lg">Cerdas, berilmu, dan memiliki pengetahuan serta keterampilan untuk menghadapi tantangan.</p></div>
+        </div>
+        <div class="value-panel absolute inset-0 flex items-center gap-8" data-idx="4">
+          <span class="font-display text-7xl text-brass-light/40">V</span>
+          <div><p class="font-display text-2xl">Singer <span class="text-cream/50 text-base font-sans">— Kreatif</span></p><p class="mt-2 text-cream/70 max-w-lg">Tekun, kreatif, inovatif, mampu beradaptasi, serta mau menerima kritik untuk refleksi diri.</p></div>
+        </div>
+      </div>
+
+      <div class="mt-10 flex gap-2" id="panca-dots">
+        <span class="w-6 h-1 rounded-full bg-brass-light dot" data-dot="0"></span>
+        <span class="w-6 h-1 rounded-full bg-cream/20 dot" data-dot="1"></span>
+        <span class="w-6 h-1 rounded-full bg-cream/20 dot" data-dot="2"></span>
+        <span class="w-6 h-1 rounded-full bg-cream/20 dot" data-dot="3"></span>
+        <span class="w-6 h-1 rounded-full bg-cream/20 dot" data-dot="4"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FRAME 05 — HUMAS / KABAR SEKOLAH ============ -->
+<section id="humas" class="hyperframe min-h-screen flex items-center bg-cream text-ink py-28">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index text-ink/50">05 — HUMAS</span>
+
+  <div class="max-w-3xl mx-auto px-6 lg:px-10 text-center reveal-up">
+    <p class="text-sm text-brass font-semibold mb-3">Kabar Sekolah</p>
+    <h2 class="font-display text-3xl lg:text-4xl">Info Terbaru dari Instagram</h2>
+    <p class="mt-4 text-ink/70">Unggahan terbaru langsung dari akun resmi <a href="https://www.instagram.com/sman10depok.official" class="text-brass underline underline-offset-2">@sman10depok.official</a>.</p>
+    <div class="mt-10 rounded-2xl overflow-hidden border border-ink/10 aspect-[4/5] max-w-sm mx-auto">
+      <iframe src="https://www.instagram.com/sman10depok.official/embed" class="w-full h-full" loading="lazy" title="Instagram SMAN 10 Depok"></iframe>
+    </div>
+    <a href="https://www.instagram.com/sman10depok.official" class="magnetic mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-forest text-cream text-sm font-semibold hover:bg-forest-light transition-colors">Buka Instagram Sekolah ↗</a>
+  </div>
+</section>
+
+<!-- ============ FRAME 06 — KONTAK ============ -->
+<section id="kontak-sekolah" class="hyperframe min-h-screen flex items-center bg-parchment text-ink py-28">
+  <div class="frame-mark tl"></div><div class="frame-mark tr"></div><div class="frame-mark bl"></div><div class="frame-mark br"></div>
+  <span class="frame-index text-ink/50">06 — KONTAK</span>
+
+  <div class="max-w-6xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10 items-center reveal-up">
+    <div class="rounded-2xl overflow-hidden border border-ink/10 aspect-video">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d495.2893866394847!2d106.73261162488033!3d-6.393443299999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69e8af9c805f91%3A0xbc8ce06516e12fae!2sSman%2010%20Depok%2C%20Curug%2C%20Kec.%20Bojongsari%2C%20Kota%20Depok%2C%20Jawa%20Barat%2016517!5e0!3m2!1sid!2sid!4v1234567890123!5m2!1sid!2sid" class="w-full h-full" loading="lazy" title="Lokasi SMAN 10 Depok"></iframe>
+    </div>
+    <div>
+      <p class="text-sm text-brass font-semibold mb-3">Kunjungi Kami</p>
+      <h2 class="font-display text-3xl lg:text-4xl mb-8">Lokasi &amp; Kontak</h2>
+      <ul class="space-y-5 text-sm">
+        <li class="flex gap-4"><svg class="w-5 h-5 shrink-0 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="10" r="2.5"/></svg><span><strong class="block">Alamat</strong>Jl. Raya Curug, RT.01/RW.06, Curug, Kec. Bojongsari, Kota Depok, Jawa Barat 16517</span></li>
+        <li class="flex gap-4"><svg class="w-5 h-5 shrink-0 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.5 21 3 14.5 3 6a2 2 0 0 1 1-2Z"/></svg><span><strong class="block">Telepon</strong><a href="tel:02518617795" class="hover:text-brass">(0251) 8617795</a></span></li>
+        <li class="flex gap-4"><svg class="w-5 h-5 shrink-0 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span><strong class="block">Email</strong><a href="mailto:sman10.depok@gmail.com" class="hover:text-brass">sman10.depok@gmail.com</a></span></li>
+        <li class="flex gap-4"><svg class="w-5 h-5 shrink-0 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg><span><strong class="block">Instagram</strong><a href="https://www.instagram.com/sman10depok.official" class="hover:text-brass">@sman10depok.official</a></span></li>
+        <li class="flex gap-4"><svg class="w-5 h-5 shrink-0 text-brass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg><span><strong class="block">Jam Operasional</strong>Senin – Jumat, 06.30 – 15.00 WIB</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-forest-dark text-cream/70 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-3 gap-10">
+    <div>
+      <div class="flex items-center gap-3">
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEipKEV9RPj0wCpAu4wdD1pDRwPnLPpr181f8SCXUcyPCqhqAdjfr8FmmvFzX-a9y-sx_8pkBY7ChvE63fXrPQF_k-y_mdRWHPWnZqIVnTxyaEWCune4zS5_54cZx-sRQg_RpJdugO64LiUWK_I3WRJL_v8dzpV55f2sC3NdmUzHyniMs_3tncvk0u5pdiw/s1587/sman10.png" alt="Logo SMAN 10 Depok" class="h-9 w-9 object-contain">
+        <p class="font-display text-cream text-base">SMA Negeri 10 Depok</p>
+      </div>
+      <p class="mt-4 text-sm leading-relaxed max-w-xs">Berakhlak mulia, berprestasi, berbudaya lingkungan, dan berwawasan global. Di bawah Cabang Dinas Pendidikan Wilayah II, Dinas Pendidikan Provinsi Jawa Barat.</p>
+    </div>
+    <div>
+      <p class="text-cream text-sm font-semibold mb-4">Tautan Bidang</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="#kurikulum" class="hover:text-cream">Kurikulum</a></li>
+        <li><a href="#kesiswaan" class="hover:text-cream">Kesiswaan</a></li>
+        <li><a href="#humas" class="hover:text-cream">Humas</a></li>
+        <li><a href="#sarpras" class="hover:text-cream">Sarana Prasarana</a></li>
+        <li><a href="#tata-usaha" class="hover:text-cream">Tata Usaha</a></li>
+        <li><a href="#guru" class="hover:text-cream">Dewan Guru</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="text-cream text-sm font-semibold mb-4">Layanan Digital</p>
+      <ul class="space-y-2 text-sm">
+        <li><a href="https://skl.sman10-depok.sch.id" class="hover:text-cream">Kelulusan (SKL)</a></li>
+        <li><a href="https://sman10depok.sch.id/kombel/" class="hover:text-cream">Komunitas Belajar</a></li>
+        <li><a href="https://sman10depok.sch.id/mpi/" class="hover:text-cream">Media Pembelajaran Interaktif</a></li>
+        <li><a href="https://sman10depok.sch.id/rkjmrkt/" class="hover:text-cream">RKJM &amp; RKT</a></li>
+      </ul>
+    </div>
+  </div>
+  <p class="text-center text-xs text-cream/40 mt-14">© 2026 SMAN 10 Depok. Hak cipta dilindungi. Cageur · Bageur · Bener · Pinter · Singer</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrambleTextPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/Flip.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
